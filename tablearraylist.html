@@ -1,0 +1,44 @@
+<html>
+<head>
+<script>
+	a = new Array();
+	a[0]=prompt("please enter your  name","first name");
+	
+	a[1]=prompt("please enter your  name","mid name");
+	
+	a[2]=prompt("please enter your  name","last name");
+	
+	a[3]=prompt("please enter your  name","nick name");
+	
+	a[4]= "wissam";
+function displayList(a){
+		str="<ol> ";
+		for(let i=0;i<a.length;i++){
+		str+="<li>"+a[i]+"</li>";
+		}
+		str+="</ol>";
+		document.getElementById("listdisplay").innerHTML+=str;
+		}
+function displayTable(a){
+		str="<table border=1>";
+		str+="<tr>";
+		for(let i=0;i<a.length;i++){
+		str+="<td>"+a[i]+"</td>"
+		}
+		str+="</tr>";
+		str+="</table>";
+		document.getElementById("tabledisplay").innerHTML+=str;
+		}
+
+</script>
+</head>
+<body>
+<p>Click to display table</p>
+<input type ="button" onclick ="displayTable(a)" value= "display table">
+<p>Click to display list</p>
+<input type ="button" onclick ="displayList(a)" value= "display list">
+<div id="tabledisplay" ></div>
+<div id="listdisplay"></div>
+
+</body>
+</html>

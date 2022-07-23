@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		Bill
+	</title>
+	
+
+</head>
+
+	<script>
+		result=0;
+		function isPositive(num){
+			if(num<0){
+			document.getElementById("price").value=0;
+		}	
+		}
+		function TotalAmmount() {
+			a=document.getElementById("items"); //items
+			b=document.getElementsByName("qty"); //grid of quantity
+			curr= document.getElementsByName("currency");
+			currval= "";
+			items = a.options;
+			price=parseInt(document.getElementById("price").value);;
+			result=0;
+			item="";
+			qty=0;
+			d = new Date();
+			//d= Date.now(); 
+			for(var i = 0; i < curr.length; i++) {
+				if(curr[i].checked){
+					if(curr[i].value == "USD")
+					currval = " $";
+					if(curr[i].value == "Lebaneselira")
+					currval = ",000 L.L";
+					break;
+				}
+			}
+			for(var i = 0; i < items.length; i++) {
+				if(a[i].selected){
+				item= items[i].value;
+				for(var j=0; j<b.length;j++){
+				if(b[j].checked){
+				qty= parseInt(b[j].value)
+				break; //in order to don't let the code enter in a loop for something unneccessary
+				}
+				} 
+				result = price*qty
+				break;
+				}}
+				if(delevary.checked){
+				if(d.getDay() == 0 || d.getDay() == 6){
+				d.setHours(d.getHours()+48);
+				}
+				
+				else
+				{
+				d.setHours(d.getHours()+24);}
+				str="<table border=1><tr><td>items</td><td>"+item+"</td><td>Qty: "+qty+"</td></tr><tr><td colspan=3>Total Paid: "+result+currval+"<br> Thank You For Your Purchase<br>Your order will be delevered on "+d.toString()+"</td></tr></table>"
+				}
+				else
+				str="<table border=1><tr><td>items</td><td>"+item+"</td><td>Qty: "+qty+"</td></tr><tr><td colspan=3>Total Paid: "+result+currval+"<br> Thank You For Your Purchase</td></tr></table>"
+				
+				
+				document.getElementById("res").innerHTML=str
+				}
+					
+	</script>
+	</head>
+<body>
+	<p>
+		Select Item
+	</p>
+	
+	<table border= 5px  bordercolor="black">
+			<tr>
+			<td>
+		
+			</td>
+			<td>Item</td>
+			<td>Quantity</td>
+			<td>Currences</td>
+			<td>Delever option</td>
+			</tr>
+			<tr>
+			<td>Select Item</td>
+			<td>
+			<select name="items" id="items">
+			<option value="RAM">RAM</option>
+			<option value="keyboard">Keyboard</option>
+			<option value="screen">Screen</option>
+			</td>
+			<td>
+			1<input type="radio" name="qty" value="1" checked>
+			2<input type="radio" name="qty" value="2">
+			3<input type="radio" name="qty" value="3">
+			</td>
+			<td>
+			price:<input type="number" id="price" min = 0 onchange="isPositive(this.value)" style="width:50px;">
+			USD<input type="radio" name="currency" value="USD" checked>
+			Lebanese Lira<input type="radio" name="currency" value="Lebaneselira">
+			</td>
+			<td>delevary<input type="checkbox" id="delevary" value="delevary"></td>
+			</tr>
+	</table>
+		<input type="button" onclick= "TotalAmmount()" value="calculate">
+		<p id="res"></p>
+		
+	
+</body>
